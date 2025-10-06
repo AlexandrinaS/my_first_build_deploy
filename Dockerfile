@@ -1,13 +1,11 @@
-# Build Stage
-FROM node:18-alpine AS build
-WORKDIR /app
-COPY package*.json ./
-RUN npm install
-COPY . .
-RUN npm run build
- 
-# Production Stage
-FROM nginx:stable-alpine AS production
-COPY --from=build /app/build /usr/share/nginx/html
+# Folosim un NGINX simplu pentru servirea build-ului React
+FROM nginx:stable-alpine
+
+# Copiem build-ul generat de React în folderul NGINX
+COPY build/ /usr/share/nginx/html
+
+# Expunem portul 80
 EXPOSE 80
+
+# Pornim NGINX
 CMD ["nginx", "-g", "daemon off;"]
