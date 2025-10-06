@@ -5,4 +5,5 @@ RUN npm install
 COPY . .
 RUN npm run build
 EXPOSE 8080
-CMD ["npx", "serve", "-s", "build"]
+
+CMD ["npx", "serve", "-s", "build", "-l", "0.0.0.0:8080"]
