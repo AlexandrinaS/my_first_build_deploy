@@ -13,8 +13,8 @@ RUN npm install
 # Copy the rest of your application files
 COPY . .
  
-# Expose the port your app runs on
-EXPOSE 3000
- 
-# Define the command to run your app
-CMD ["npm", "start"]
+# Expune portul Vite (implicit 5173)
+EXPOSE 5173
+
+# Rulează aplicația cu Vite pe toate interfețele
+CMD ["npm", "run", "dev"]
