@@ -1,11 +1,20 @@
-# Folosim un NGINX simplu pentru servirea build-ului React
-FROM nginx:stable-alpine
-
-# Copiem build-ul generat de React în folderul NGINX
-COPY build/ /usr/share/nginx/html
-
-# Expunem portul 80
-EXPOSE 80
-
-# Pornim NGINX
-CMD ["nginx", "-g", "daemon off;"]
+# Use the latest LTS version of Node.js
+FROM node:20-alpine
+ 
+# Set the working directory inside the container
+WORKDIR /app
+ 
+# Copy package.json and package-lock.json
+COPY package*.json ./
+ 
+# Install dependencies
+RUN npm install
+ 
+# Copy the rest of your application files
+COPY . .
+ 
+# Expose the port your app runs on
+EXPOSE 3000
+ 
+# Define the command to run your app
+CMD ["npm", "start"]
