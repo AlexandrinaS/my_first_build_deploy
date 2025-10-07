@@ -19,6 +19,7 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
       Hello Devops 2025
+      New changes to check the jobs
       </div>
     </>
   )
